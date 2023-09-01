@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .bg-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading1 {
+            color: #333;
+            font-size: 36px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .number {
+            color: #333;
+            background-color: #cbd2d9;
+            font-size: 24px;
+            font-weight: bold;
+            border: 8px solid grey;
+            border-radius: 12px;
+            padding: 8px;
+        }
+
+        .operator {
+            color: #c4c4c4;
+            font-size: 30px;
+        }
+
+        .user-input {
+            text-align: center;
+            color: #333;
+            background-color: #cbd2d9;
+            font-size: 24px;
+            font-weight: bold;
+            width: 142px;
+            height: 60px;
+            border: 8px solid grey;
+            border-radius: 12px;
+            margin: 20px;
+        }
+
+        .game-result {
+            color: #ffffff;
+            background-color: #333;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px;
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .action-button {
+            background-color: #1e217c;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .action-button:hover {
+            background-color: #0b0c4d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-container">
+        <h1 class="heading1">Addition Game</h1>
+        <div>
+            <span id="firstNumber" class="number"></span>
+            <span class="operator">+</span>
+            <span id="secondNumber" class="number"></span>
+            <span class="operator">=</span>
+            <input id="userInput" class="user-input" type="text" />
+        </div>
+        <div class="button-container">
+            <button id="checkButton" class="action-button" onclick="checkbutton()">
+                Check
+            </button>
+            <button id="restartButton" class="action-button" onclick="restartbutton()">
+                Restart
+            </button>
+        </div>
+        <p id="gameResult" class="game-result"></p>
+    </div>
+
+    <script>
+
+        let firstnumberelement = document.getElementById("firstNumber");
+        let seconnumberelement = document.getElementById("secondNumber");
+        
+        let successMessage = "Congratulations! You got it right.";
+        let tryAgainMessage = "Please Try Again!";
+        
+        let gameResultElement = document.getElementById("gameResult");
+        let userInputElement = document.getElementById("userInput");
+        
+        function restartbutton() {
+            let firstrandomnumber = Math.random() * 100;
+            let secondrandomnumber = Math.random() * 100;
+        
+            firstnumberelement.textContent = Math.ceil(firstrandomnumber);
+            seconnumberelement.textContent = Math.ceil(secondrandomnumber);
+        
+            gameResultElement.textContent = "";
+            userInputElement.value = "";
+        }
+        restartbutton();
+        
+        function checkbutton() {
+            let firstrandominteger = parseInt(firstnumberelement.textContent);
+            let secondrandominteger = parseInt(seconnumberelement.textContent);
+            let userinputnumber = parseInt(userInputElement.value);
+        
+            let sumofintegers = firstrandominteger + secondrandominteger;
+        
+            if (userinputnumber === sumofintegers) {
+                gameResultElement.textContent = successMessage;
+                gameResultElement.style.backgroundColor = '#028a0f';
+            } else {
+                gameResultElement.textContent = tryAgainMessage;
+                gameResultElement.style.backgroundColor = '#1e217c';
+            }
+        
+        }
+            </script>
+</body>
+
+</html>
+
